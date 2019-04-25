@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<title>Game of Life -- Shop</title>
+		<script src="shop.js"></script>
+	</head>
+	<body>
+	<a href="cart.html">CART</a>
+	
+		<center>
+			<div class="container">
+				<div class="row">
+					<div  class="col-md-1 "></div>
+					<div  class="col-md-5 ">
+					<div class="card" style="width: 17rem;">
+					<img src="Images/glider.gif" class="card-img-top"  height="250" alt="glider">
+					<div class="card-body">
+					<h5 class="card-title">GLIDER</h5>
+					<p class="card-text" id="lPrice">A basic piece which perform a simple task. It travels in a diagonal direction.</p>
+					Enter quantity:<input id="gliderInput" /><button onclick="addGlider()">Add to cart</button>
+</div>
+</div>
+
+</div>
+
+<div class="col-md-5  ">
+<div class="card" style="width: 17rem;">
+<img src="Images/Lwss.gif" class="card-img-top"  height="250" alt="Spaceship">
+<div class="card-body">
+<h5 class="card-title">Spaceship</h5>
+<p class="card-text"> A basic enough piece which perform a simple task. It travels in a straight direction</p>
+Enter quantity:<input id="lwssInput" /><button onclick="addLwss()">Add to cart</button>
+</div>
+</div>
+
+</div>
+<div  class="col-md-1"></div>
+</div><br>
+
+<div class="row">
+<div  class="col-md-1"></div>
+<div  class="col-md-5 ">
+
+<div class="card" style="width: 17rem;">
+<img src="Images/Pentadecathlon.gif" class="card-img-top" height="250" alt="Pentadecathlon">
+<div class="card-body">
+<h5 class="card-title">Pentadecathlon</h5>
+<p class="card-text">A basic enough piece which perform a task for infinity. It can be broken by other piece upon collision</p>
+Enter quantity:<input id="pentaInput" /><button onclick="addPenta()">Add to cart</button>
+</div>
+</div>
+</div>
+
+			<div class="col-md-5  ">
+
+			<div class="card" style="width: 17rem;">
+				<img src="Images/pulsar.gif" class="card-img-top"  height="250" alt="Pulsar">
+				<div class="card-body">
+					<h5 class="card-title">Detonator</h5>
+					<p class="card-text">A simple piece which perform a complex task for infinity. It can be broken by other piece upon collision</p>
+					Enter quantity:<input id="explInput" /><button onclick="addExpl()">Add to cart</button>
+				</div>
+			</div>
+		</div>
+			<div  class="col-md-1"></div>
+		</div>
+			</div>
+		</center>
+	</body>
+</html>

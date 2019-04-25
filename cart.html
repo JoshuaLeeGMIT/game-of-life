@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<title>Game of Life -- Cart</title>
+</head>
+<body>
+<a href="shop.html">SHOP</a>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-2 border"><h4>Name</h4></div>
+		<div class="col-md-2 border"><h4>Quantity</h4></div>
+		<div class="col-md-2 border"><h4>Price</h4></div>
+		<div class="col-md-3"></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-2 border"><h5 id="gName"></h5></div>
+		<div class="col-md-2 border"><h5 id="gQuanity"></h5></div>
+		<div class="col-md-2 border"><h5 id="gPrice"></h5></div>
+		<div class="col-md-3"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 "></div>
+		<div class="col-md-2 border"><h5 id="lName"></h5></div>
+		<div class="col-md-2 border"><h5 id="lQuanity"></h5></div>
+		<div class="col-md-2 border"><h5 id="lPrice"></h5></div>
+		<div class="col-md-3 "></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 "></div>
+		<div class="col-md-2 border"><h5 id="pName"></h5></div>
+		<div class="col-md-2 border"><h5 id="pQuanity"></h5></div>
+		<div class="col-md-2 border"><h5 id="pPrice"></h5></div>
+		<div class="col-md-3 "></div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 "></div>
+		<div class="col-md-2 border"><h5 id="eName"></h5></div>
+		<div class="col-md-2 border"><h5 id="eQuanity"></h5></div>
+		<div class="col-md-2 border"><h5 id="ePrice"></h5></div>
+		<div class="col-md-3 "></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3 "></div>
+		<div class="col-md-2 border"></div>
+		<div class="col-md-2 border"><h5 id="qTotal"></h5></div>
+		<div class="col-md-2 border"><h5 id="cTotal"></h5></div>
+		<div class="col-md-3 "></div>
+	</div>
+</div>
+	<center>
+	<button onclick="cancel()">Cancel peices</button><button onclick="buy()">Buy peices</button>
+	</center>
+</body>
+</html>
+<script>
+var glider = JSON.parse(localStorage.getItem('glider'));
+var lwss = JSON.parse(localStorage.getItem('lwss'));
+var penta = JSON.parse(localStorage.getItem('penta'));
+var expl = JSON.parse(localStorage.getItem('expl'));
+let gTotal, lTotal, pTotal, eTotal, cTotal, qTotal;
+
+function display() {
+	document.getElementById("gName").innerHTML = glider.name;
+	document.getElementById("gQuanity").innerHTML = glider.quantity;
+	gTotal = glider.quantity * glider.price; 
+	document.getElementById("gPrice").innerHTML = "€" + gTotal;
+	
+	document.getElementById("lName").innerHTML = lwss.name;
+	document.getElementById("lQuanity").innerHTML = lwss.quantity;
+	lTotal = lwss.quantity * lwss.price; 
+	document.getElementById("lPrice").innerHTML = "€" + lTotal;
+	
+	document.getElementById("pName").innerHTML = penta.name;
+	document.getElementById("pQuanity").innerHTML = penta.quantity;
+	pTotal = penta.quantity * penta.price; 
+	document.getElementById("pPrice").innerHTML = "€" + pTotal;
+	
+	document.getElementById("eName").innerHTML = expl.name;
+	document.getElementById("eQuanity").innerHTML = expl.quantity;
+	eTotal = expl.quantity * expl.price; 
+	document.getElementById("ePrice").innerHTML = "€" + eTotal;
+	
+	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
+	cTotal = gTotal + lTotal + pTotal + eTotal;
+	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
+	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+}
+
+function buy() {
+
+	
+    alert("Purcase(s) was sucessfull");
+	glider.quantity = 0;
+	localStorage.setItem ('glider', JSON.stringify(glider));	
+	lwss.quantity = 0;
+	localStorage.setItem ('lwss', JSON.stringify(lwss));
+	penta.quantity = 0;
+	localStorage.setItem ('penta', JSON.stringify(penta));
+	expl.quantity = 0;
+	localStorage.setItem ('expl', JSON.stringify(expl));
+	
+	document.getElementById("gName").innerHTML = glider.name;
+	document.getElementById("gQuanity").innerHTML = glider.quantity;
+	gTotal = glider.quantity * glider.price; 
+	document.getElementById("gPrice").innerHTML = "€" + gTotal;
+	
+	document.getElementById("lName").innerHTML = lwss.name;
+	document.getElementById("lQuanity").innerHTML = lwss.quantity;
+	lTotal = lwss.quantity * lwss.price; 
+	document.getElementById("lPrice").innerHTML = "€" + lTotal;
+	
+	document.getElementById("pName").innerHTML = penta.name;
+	document.getElementById("pQuanity").innerHTML = penta.quantity;
+	pTotal = penta.quantity * penta.price; 
+	document.getElementById("pPrice").innerHTML = "€" + pTotal;
+	
+	document.getElementById("eName").innerHTML = expl.name;
+	document.getElementById("eQuanity").innerHTML = expl.quantity;
+	eTotal = expl.quantity * expl.price; 
+	document.getElementById("ePrice").innerHTML = "€" + eTotal;
+	
+	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
+	cTotal = gTotal + lTotal + pTotal + eTotal;
+	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
+	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+}
+
+
+function cancel() {
+	alert("All items cancled");
+	glider.quantity = 0;
+	localStorage.setItem ('glider', JSON.stringify(glider));	
+	lwss.quantity = 0;
+	localStorage.setItem ('lwss', JSON.stringify(lwss));
+	penta.quantity = 0;
+	localStorage.setItem ('penta', JSON.stringify(penta));
+	expl.quantity = 0;
+	localStorage.setItem ('expl', JSON.stringify(expl));
+	
+	document.getElementById("gName").innerHTML = glider.name;
+	document.getElementById("gQuanity").innerHTML = glider.quantity;
+	gTotal = glider.quantity * glider.price; 
+	document.getElementById("gPrice").innerHTML = "€" + gTotal;
+	
+	document.getElementById("lName").innerHTML = lwss.name;
+	document.getElementById("lQuanity").innerHTML = lwss.quantity;
+	lTotal = lwss.quantity * lwss.price; 
+	document.getElementById("lPrice").innerHTML = "€" + lTotal;
+	
+	document.getElementById("pName").innerHTML = penta.name;
+	document.getElementById("pQuanity").innerHTML = penta.quantity;
+	pTotal = penta.quantity * penta.price; 
+	document.getElementById("pPrice").innerHTML = "€" + pTotal;
+	
+	document.getElementById("eName").innerHTML = expl.name;
+	document.getElementById("eQuanity").innerHTML = expl.quantity;
+	eTotal = expl.quantity * expl.price; 
+	document.getElementById("ePrice").innerHTML = "€" + eTotal;
+	
+	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
+	cTotal = gTotal + lTotal + pTotal + eTotal;
+	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
+	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+}
+
+display();
+</script>

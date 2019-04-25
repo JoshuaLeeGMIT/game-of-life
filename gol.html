@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="gol.js"></script>
-    <title>Game of Life</title>
+    <title>Game of Life -- Game</title>
   </head>
   <body onload="main()">
     <div class="container-fluid">
@@ -38,20 +38,25 @@
         </ul>
       </div>
     </div>
-    <div class="row col-auto game">
-      <table id="world">
-      </table>
-    </div>
-    <div class="row col-auto justify-content-center">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" id="gliderBtn">Glider</button>
-        <button type="button" class="btn btn-primary" id="lwssBtn">LWSS</button>
-        <button type="button" class="btn btn-primary" id="pentaBtn">Pentadecalathon</button>
-        <button type="button" class="btn btn-primary" id="explBtn">Exploder</button>
+    <div class="container">
+      <div class="row col-auto justify-content-center">
+        <p>Step 0: Place your pieces</br>Step 1: Press start</br>Step 2: Enjoy</p>
       </div>
-    </div>
-    <div class="row col-auto justify-content-center">
-      <button type="button" class="btn btn-primary" id="startBtn">Start</button>
+      <div class="row col-auto game">
+        <table id="world">
+        </table>
+      </div>
+      <div class="row col-auto justify-content-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary" id="gliderBtn">Glider</button>
+          <button type="button" class="btn btn-primary" id="lwssBtn">LWSS</button>
+          <button type="button" class="btn btn-primary" id="pentaBtn">Pentadecalathon</button>
+          <button type="button" class="btn btn-primary" id="explBtn">Exploder</button>
+        </div>
+      </div>
+      <div class="row col-auto justify-content-center">
+        <button type="button" class="btn btn-primary" id="startBtn">Start</button>
+      </div>
     </div>
   </body>
 </html>

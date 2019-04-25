@@ -1,5 +1,7 @@
-const ALIVE = "rgb(255, 106, 92)";
+const ALIVE = "rgb(65, 65, 65)";
 const DEAD = "rgb(255, 255, 255)";
+const SIZE = 50;
+const SPEED = 72;
 const EXPL = [
     [0, 0], [0, 2], [1, 2], [2, 2],
     [3, 2], [4, 2], [4, 0], [4, -2],
@@ -25,6 +27,7 @@ const PENTA = [
 ];
 
 let cells = new Array();
+let inPlay = false;
 
 function isAlive(i, j) {
     return (cells[i][j].style.backgroundColor === ALIVE);
@@ -65,6 +68,15 @@ function tick() {
 
 function userHas(seed) {
     return true;
+}
+
+function start() {
+    if (inPlay) {
+        return;
+    } else {
+        inPlay = true;
+        setInterval(tick, SPEED);
+    }
 }
 
 function create(seed) {
@@ -137,11 +149,11 @@ function main() {
     let explBtn = document.getElementById("explBtn");
     let startBtn = document.getElementById("startBtn");
     
-    init(50);
+    init(SIZE);
     
     gliderBtn.addEventListener("click", function() { create("glider"); });
     lwssBtn.addEventListener("click", function() { create("lwss"); });
     pentaBtn.addEventListener("click", function() { create("penta"); });
     explBtn.addEventListener("click", function() { create("expl"); })
-    startBtn.addEventListener("click", function() { setInterval(tick, 72); });
+    startBtn.addEventListener("click", start);
 }

@@ -1,0 +1,55 @@
+a {
+  color: #494e6b;
+}
+
+a:hover {
+  color: #008f95;
+}
+
+body {
+  background-color: #f2eee2;
+}
+
+div {
+  margin: 12px 0px 12px 0px;
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+img {
+  display: block;
+}
+
+p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+}
+
+table, tr, td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: auto;
+}
+
+.btn-primary {
+  background-color: grey;
+  border-color: grey;
+}
+
+.btn-primary:hover {
+  background-color: lightgrey;
+  border-color: lightgrey
+}
+
+.carousel img {
+  border: 4px ridge lightgrey;
+}
+
+.nav {
+  font-family: 'IBM Plex Mono', serif;
+  font-size: 24px;
+  font-variant: small-caps;
+}

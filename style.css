@@ -17,13 +17,6 @@ img {
   display: block;
 }
 
-table, tr, td {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 0px;
-  margin: auto;
-}
-
 .btn-primary {
   color: #fff;
   background-color: #414141;
@@ -45,12 +38,19 @@ table, tr, td {
   padding: 0px;
 }
 
+.game table, tr, td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: auto;
+}
+
 .nav {
-  padding: 8px;
+  padding: 4px;
   font-family: 'IBM Plex Mono', serif;
   font-size: 24px;
   font-variant: small-caps;
-  box-shadow: 0px 2px 11px 0px rgba(65, 65, 65, 0.35);
+  box-shadow: 0px 2px 6x 0px rgba(65, 65, 65, 0.35);
   background-color: #414141;
 }
 

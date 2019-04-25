@@ -1,4 +1,4 @@
-const ALIVE = "rgb(0, 0, 0)";
+const ALIVE = "rgb(255, 106, 92)";
 const DEAD = "rgb(255, 255, 255)";
 const EXPL = [
     [0, 0], [0, 2], [1, 2], [2, 2],

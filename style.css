@@ -1,6 +1,8 @@
 body {
   color: #414141;
   background-color: #ffffff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
 }
 
 div {
@@ -13,11 +15,6 @@ h1 {
 
 img {
   display: block;
-}
-
-p {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 16px;
 }
 
 table, tr, td {
@@ -49,9 +46,11 @@ table, tr, td {
 }
 
 .nav {
+  padding: 8px;
   font-family: 'IBM Plex Mono', serif;
   font-size: 24px;
   font-variant: small-caps;
+  box-shadow: 0px 2px 11px 0px rgba(65, 65, 65, 0.35);
   background-color: #414141;
 }
 

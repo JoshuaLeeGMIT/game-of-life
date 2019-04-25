@@ -4,7 +4,7 @@
 <html lang="en-gb">
   <head>
     <meta charset="utf-8">
-    <title>Game of Life -- Home</title>
+    <title>Game of Life -- About</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
@@ -12,34 +12,67 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
-  <body class="container">
-    <div class="flexbox">
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="gol.html">game</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="store.html">store</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.html">cart</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="account.html">account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="about.html" >about</a>
-        </li>
-      </ul>
+  <body>
+    <div class="container-fluid">
+      <div class="flexbox">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gol.html">game</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html">store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="account.html">account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html" >about</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="row col-auto">
-      <h1 class="display-4">History</h1>
-    </div>
-    <div class="row blurb col-auto">
-      <p>Test</p>
+    <div class="container">
+      <div class="row col-auto">
+        <h1 class="display-4">Rules</h1>
+      </div>
+      <div class="row col-auto">
+        <p>The universe of the Game of Life is an infinite, two-dimensional
+        orthogonal grid of square cells, each of which is in one of two possible
+        states, alive or dead, (or populated and unpopulated, respectively).
+        Every cell interacts with its eight neighbours, which are the cells
+        that are horizontally, vertically, or diagonally adjacent. At each step
+        in time, the following transitions occur:</p>
+        <ul>
+          <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation</li>
+          <li>Any live cell with two or three live neighbours lives on to the next generation</li>
+          <li>Any live cell with more than three live neighbours dies, as if by overpopulation</li>
+          <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</li>
+        </ul>
+        <p>The initial pattern constitutes the seed of the system. The first
+        generation is created by applying the above rules simultaneously to every
+        cell in the seed; births and deaths occur simultaneously, and the discrete
+        moment at which this happens is sometimes called a tick. Each generation
+        is a pure function of the preceding one. The rules continue to be applied
+        repeatedly to create further generations.</p>
+      </div>
+      <div class="row col-auto">
+        <h1 class="display-4">History</h1>
+      </div>
+      <div class="row col-auto">
+        <p>Conway's Game of Life is a cellular automaton, a model that can trace
+        its origins back to the ideas of John Von Neumann in the late 1940s. John Conway
+        began devising and refining the set of rules for his game in 1968 and it
+        was published in the October 1970 issue of <i>Scientific American</i>, quickly
+        drawing attention from mathematicians and computer scientists alike.</p>
+        <p>First simulated on paper and a Go board, programmers were quick to notice
+        the potential to program it for computers.<p>
+      </div>
     </div>
   </body>
 </html>

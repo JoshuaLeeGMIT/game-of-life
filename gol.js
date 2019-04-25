@@ -1,5 +1,10 @@
 const ALIVE = "rgb(0, 0, 0)";
 const DEAD = "rgb(255, 255, 255)";
+const EXPL = [
+    [0, 0], [0, 2], [1, 2], [2, 2],
+    [3, 2], [4, 2], [4, 0], [4, -2],
+    [3, -2], [2, -2], [1, -2], [0, -2]
+];
 const GLIDER = [
     [0, 0], [1, 1], [2, 1], [2, 0],
     [2, -1]
@@ -72,6 +77,12 @@ function create(seed) {
     }
     
     switch (seed) {
+        case "expl":
+            rPos = parseInt(cells.length - (cells.length * 0.25));
+            cPos = parseInt(cells.length - (cells.length * 0.85));
+            for (let i = 0; i < EXPL.length; ++i)
+                cells[rPos + EXPL[i][0]][cPos + EXPL[i][1]].style.backgroundColor = ALIVE;
+            break;
         case "glider":
             rPos = cPos = parseInt(cells.length - (cells.length * 0.85));
             for (let i = 0; i < GLIDER.length; ++i)
@@ -123,7 +134,7 @@ function main() {
     let gliderBtn = document.getElementById("gliderBtn");
     let lwssBtn = document.getElementById("lwssBtn");
     let pentaBtn = document.getElementById("pentaBtn");
-    // let explBtn = document.getElementById("explBtn");
+    let explBtn = document.getElementById("explBtn");
     let startBtn = document.getElementById("startBtn");
     
     init(50);
@@ -131,6 +142,6 @@ function main() {
     gliderBtn.addEventListener("click", function() { create("glider"); });
     lwssBtn.addEventListener("click", function() { create("lwss"); });
     pentaBtn.addEventListener("click", function() { create("penta"); });
-    // explBtn.addEventListener("click", function() { create("expl"); })
+    explBtn.addEventListener("click", function() { create("expl"); })
     startBtn.addEventListener("click", function() { setInterval(tick, 72); });
 }

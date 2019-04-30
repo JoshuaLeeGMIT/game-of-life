@@ -3,14 +3,14 @@
 
 <html lang="en-gb">
   <head>
-    <meta charset="utf-8">
-    <title>Game of Life -- Home</title>
+    <meta charset="utf-8">  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Game of Life -- Home</title>
   </head>
   <body>
     <div class="container-fluid">
@@ -38,6 +38,9 @@
       </div>
     </div>
     <div class="container">
+      <div class="row offset-lg-11 offset-md-9 offset-sm-9 col-lg-1 col-md-3 col-sm-3">
+        <span id="logUser"></span>
+	  </div>
       <div class="row">
         <div class="col-12 col-lg-6">
           <h1 class="display-4">Conway's Game of Life</h1>
@@ -69,10 +72,82 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-      </div>
-      <div>
-        
+        <!-- Add col; Add required attribute; Add onclick event (SB) -->
+        <div class="col-12 col-lg-6">
+          <!-- Added (SB) - form code block orginated from -> https://getbootstrap.com/docs/4.0/components/forms/ -->
+          <form>    
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" id="EnterUserName" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" id="EnterPassword" required> 
+           </div>
+            <div>
+              <button id="logInBtn" onclick="login()" class="btn btn-primary">Log In</button>
+			  			<small id="userHelp"></small>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </body>
 </html>
+<script>    
+	// Declare object (SB)
+	// Pre-coded username and password
+	let user = {userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderPurchased: 0, lwssPurchased: 0, pentaPurchased: 0, explPurchased: 0};
+
+	// Declare variables (SB)
+	let enteredUser; let enteredPass;
+
+	onPageLoad();
+
+	function onPageLoad() {
+		if (localStorage.loggedInUser == null) {
+				localStorage.loggedInUser = "testuser@test.ie";
+				user.userName = localStorage.loggedInUser;
+		}
+		if (localStorage.loggedPass == null) {
+				localStorage.loggedPass = "testPass";
+				user.userPass = localStorage.loggedPass;
+		}
+		document.getElementById("EnterUserName").setAttribute("value", user.userName);
+		document.getElementById("EnterPassword").setAttribute("value", user.userPass);
+		loginCheck();
+	}
+
+	// Add function login (SB)
+	function login() {
+		enteredUser = document.getElementById("EnterUserName").value;
+		enteredPass = document.getElementById("EnterPassword").value;
+
+		if (enteredUser == user.userName && enteredPass == user.userPass) {
+			sessionStorage.loggedIn = 1;
+		}
+		else {
+			sessionStorage.loggedIn = 0;
+		}
+	}
+
+	// Add function loginCheck (SB)
+	function loginCheck() {
+		if (sessionStorage.loggedIn != null) {
+			if (sessionStorage.loggedIn == 0) {
+				document.getElementById("userHelp").setAttribute("class", "form-text text-danger");
+				document.getElementById("userHelp").innerHTML = "Login Incorrect";
+			}
+			else if (sessionStorage.loggedIn == 1) {
+				document.getElementById("userHelp").setAttribute("class", "form-text text-success");
+				document.getElementById("userHelp").innerHTML = "Login Successful";
+				document.getElementById("logInBtn").setAttribute("disabled", "disabled");
+				document.getElementById("logInBtn").setAttribute("class", "btn btn-secondary")
+				document.getElementById("logUser").innerHTML = user.userName;
+			}
+			else {
+				document.getElementById("userHelp").innerHTML = null;
+			}
+		}
+	}
+</script>

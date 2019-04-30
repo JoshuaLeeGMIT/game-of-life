@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- Game of Life Account -->
+
+<html lang="en-gb">
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Life -- Account</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="flexbox">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gol.html">game</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html">store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="account.html">account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">about</a>
+          </li>
+        </ul>	
+	  </div>
+    </div>
+    <div class="container">
+      <form class="form col-lg-6" onsubmit="updateEmail()">
+        <div class="form-group">
+          <label>New Email Address</label>
+          <input type="email" id="newEmail" class="form-control mx-sm-3" required>
+          <small id="currEmailInfo" class="text-muted"></small>
+        </div>
+        <div>
+          <button type="submit" id="changeEmailBtn" class="btn btn-primary">Update Email</button>
+          <small id="changeEmailInfo" class="text-success"></small>
+        </div>
+      </form>
+	  <form class="form col-lg-6">
+	    <div class="form-group">
+		  <label>Current Password</label>
+		  <input type="password" id="currentPassword" class="form-control mx-sm-3" oninput="currPassCheck()">
+          <small id="currPassIncorrect" class="text-danger"></small>
+	    </div>
+        <div class="form-group">
+		  <label>New Password</label>
+		  <input type="password" id="newPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePass()">
+          <small class="text-muted">Please use at least 8 characters</small>
+	    </div>
+        <div class="form-group">
+		  <label>Confirm Password</label>
+		  <input type="password" id="reNewPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePass()">
+		  <small id="confirmPassHelp" class="text-danger"></small>
+	    </div>
+        <div>
+          <button type="submit" id="changePassBtn" class="btn btn-secondary" disabled onclick="updatePass()">Change Password</button>
+          <small id="changePassInfo" class="text-success"></small>
+        </div>
+	  </form>
+    </div>
+  </body>
+</html>
+
+<script>
+    let currPass; let newPass; let reEnterPass; let updatedPassword; let updatedEmail;       
+    
+    onPageLoad();
+    
+    function onPageLoad() {
+        document.getElementById("currEmailInfo").innerHTML = "Current Email Address - " + localStorage.loggedInUser;
+        checkPwdUpdate();
+    }
+    
+    function currPassCheck() {
+        currPass = document.getElementById("currentPassword").value;
+        if (currPass != localStorage.loggedPass) {         
+            document.getElementById("currPassIncorrect").innerHTML = "Enter Current Password";
+        }
+        else {
+            document.getElementById("currPassIncorrect").innerHTML = null;
+            document.getElementById("newPassword").removeAttribute("disabled");
+            document.getElementById("reNewPassword").removeAttribute("disabled");
+        }
+    }
+    
+    function changePass(){
+        newPass = document.getElementById("newPassword").value;
+        reEnterPass = document.getElementById("reNewPassword").value;
+        
+        if ((newPass != null && newPass != "") && (reEnterPass != null && reEnterPass != "")) {
+            if (newPass != reEnterPass) {
+                document.getElementById("confirmPassHelp").innerHTML = "Passwords must match";
+            }
+            else {
+                document.getElementById("confirmPassHelp").innerHTML = null;
+                document.getElementById("changePassBtn").removeAttribute("disabled");
+                document.getElementById("changePassBtn").setAttribute("class", "btn btn-primary");
+                updatedPassword = reEnterPass;
+            }
+        }
+    }
+    
+    function updatePass() {
+        localStorage.loggedPass = updatedPassword;
+        sessionStorage.loggedIn = 2;
+        sessionStorage.updatePassSuccess = 1;
+    }
+    
+    function updateEmail() {
+        updatedEmail = document.getElementById("newEmail").value;
+        localStorage.loggedInUser = updatedEmail;
+    }
+    
+    function checkPwdUpdate() {
+        if (sessionStorage.updatePassSuccess == 1) {
+            document.getElementById("changePassInfo").innerHTML = "Password Successfully Changed";
+            sessionStorage.removeItem("updatePassSuccess");
+        }
+    }
+</script>

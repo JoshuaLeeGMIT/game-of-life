@@ -119,8 +119,14 @@
 			localStorage.loggedPass = "testPass";
 			user.userPass = localStorage.loggedPass;
 		}
-		document.getElementById("EnterUserName").setAttribute("value", user.userName);
-		document.getElementById("EnterPassword").setAttribute("value", user.userPass);
+    
+    if (localStorage.userInfo == null) {
+      addUserToStorage = {userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0};
+      localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
+    }
+    
+		document.getElementById("EnterUserName").setAttribute("value", localStorage.loggedInUser);
+		document.getElementById("EnterPassword").setAttribute("value", localStorage.loggedPass);
 		loginCheck();
 	}
 
@@ -129,7 +135,7 @@
 		enteredUser = document.getElementById("EnterUserName").value;
 		enteredPass = document.getElementById("EnterPassword").value;
 
-		if (enteredUser == user.userName && enteredPass == user.userPass) {
+		if (enteredUser == localStorage.loggedInUser && enteredPass == localStorage.loggedPass) {
 			sessionStorage.loggedIn = 1;
 		}
 		else {

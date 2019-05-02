@@ -1,3 +1,4 @@
+/* Sets the general style of the website (JL) */
 body {
   color: #414141;
   background-color: #ffffff;
@@ -5,10 +6,12 @@ body {
   font-size: 16px;
 }
 
+/* Ensure each div is nicely separated from each other (JL) */
 div {
-  margin: 0px 0px 24px 0px;
+  margin-botton: 24px;
 }
 
+/* Sets the font for all h1s (JL) */
 h1 {
   font-family: 'Press Start 2P', cursive;
 }
@@ -17,35 +20,42 @@ img {
   display: block;
 }
 
+/* Changes the style of the default Boostrap buttons (JL) */
 .btn-primary {
   color: #fff;
   background-color: #414141;
   border-color: #056572;
 }
 
+/* Changes the style of the default Boostrap button hover (JL) */
 .btn-primary:hover {
   color: #fff;
   background-color: #056572;
   border-color: #414141;
 }
 
+/* Use CSS attribute selector to change the style of insensitive buttons (JL) */
 .btn-primary[disabled] {
   background-color: #b0b0b0;
 }
 
+/* Same as above, but for the hover state (JL) */
 .btn-primary:hover[disabled] {
   background-color: #b0b0b0;
 }
 
+/* Puts a border around the carousel images (JL) */
 .carousel img {
   border: 4px ridge lightgrey;
 }
 
+/* Makes the navbar sticky and removes padding (JL) */
 .container-fluid {
   position: sticky;
   padding: 0px;
 }
 
+/* Set the style for the game world (JL) */
 .game table, tr, td {
   border: 1px solid grey;
   border-collapse: collapse;
@@ -53,6 +63,7 @@ img {
   margin: auto;
 }
 
+/* Set the style for the navbar (JL) */
 .nav {
   padding: 4px;
   font-family: 'IBM Plex Mono', serif;
@@ -62,16 +73,19 @@ img {
   background-color: #414141;
 }
 
+/* Sets the style for links in the navbar (JL) */
 .nav a {
   width: 100%;
   height: 100%;
   color: #fff;
 }
 
+/* Sets the style for link hovers in the navbar (JL) */
 .nav a:hover {
   color: lightblue;
 }
 
+/* Separates the start button from the other game buttons (JL) */
 #startBtn {
   margin-left: 24px;
 }

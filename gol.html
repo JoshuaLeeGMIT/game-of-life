@@ -3,6 +3,7 @@
 
 <html lang="en-gb">
   <head>
+    <!-- Set up the page basics and link in Boostrap (JL) -->
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
@@ -13,7 +14,9 @@
     <script type="text/javascript" src="gol.js"></script>
     <title>Game of Life -- Game</title>
   </head>
+  <!-- Load gol.js' main function upon page load (JL) -->
   <body onload="main()">
+    <!-- The HTML for the navbar (JL) -->
     <div class="container-fluid">
       <div class="flexbox">
         <ul class="nav justify-content-center">
@@ -39,13 +42,16 @@
       </div>
     </div>
     <div class="container">
+      <!-- A short, centred list of instructions for playing the game (JL) -->
       <div class="row col-auto justify-content-center">
         <p>Step 0: Place your pieces<br/>Step 1: Press start<br/>Step 2: Enjoy</p>
       </div>
+      <!-- The game board; empty initially (JL) -->
       <div class="row col-auto game">
         <table id="world">
         </table>
       </div>
+      <!-- The game controls (JL) -->
       <div class="row col-auto justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-primary" id="gliderBtn">Glider</button>

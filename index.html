@@ -3,7 +3,8 @@
 
 <html lang="en-gb">
   <head>
-    <meta charset="utf-8">  
+    <!-- Set up the page basics and link in Boostrap (JL) -->
+    <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
@@ -13,6 +14,7 @@
     <title>Game of Life -- Home</title>
   </head>
   <body>
+    <!-- The HTML for the navbar (JL) -->
     <div class="container-fluid">
       <div class="flexbox">
         <ul class="nav justify-content-center">
@@ -42,25 +44,29 @@
         <span id="logUser"></span>
       </div>
       <div class="row">
+        <!-- The page's title (JL) -->
         <div class="col-12 col-lg-6">
           <h1 class="display-4">Conway's Game of Life</h1>
         </div>
+        <!-- The page's title image (JL) -->
         <div class="col-12 col-lg-6">
           <img src="images/header.png"/>
         </div>
       </div>
       <div class="row">
+        <!-- A short blurb about the game (JL) -->
         <p class="col-auto">Conway's Game of Life is a cellular automaton devised by the British mathematician John H. Conway in 1970. Its rules are simple, but its results are complex and unpredictable. Each square in the grid is in one of two states: alive, or dead.</p>
         <p class="col-auto">Can you win the game of life?</p>
       </div>
       <div class="row">
+        <!-- A carousel with two images of John Conway in it, taken from https://getbootstrap.com/docs/4.3/components/carousel/ -->
         <div id="carouselExampleControls" class="carousel slide col-12 col-lg-6" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="images/jhc-1.jpg" class="d-block w-100" alt="John H. Conway">
+              <img src="images/jhc-1.jpg" class="d-block w-100" alt="John H. Conway"/>
             </div>
             <div class="carousel-item">
-              <img src="images/jhc-2.jpg" class="d-block w-100" alt="John H. Conway">
+              <img src="images/jhc-2.jpg" class="d-block w-100" alt="John H. Conway"/>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

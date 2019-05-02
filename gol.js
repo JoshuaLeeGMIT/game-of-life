@@ -1,5 +1,6 @@
 const ALIVE = "rgb(65, 65, 65)";
 const DEAD = "rgb(255, 255, 255)";
+const SIZE = 50;
 const SPEED = 72;
 const EXPL = [
     [0, 0], [0, 2], [1, 2], [2, 2],
@@ -70,10 +71,13 @@ function userHas(seed) {
 }
 
 function start() {
+    let startBtn = document.getElementById("startBtn");
+
     if (inPlay) {
         return;
     } else {
         inPlay = true;
+        startBtn.setAttribute("disabled", "true");
         setInterval(tick, SPEED);
     }
 }

@@ -29,6 +29,14 @@ img {
   border-color: #414141;
 }
 
+.btn-primary[disabled] {
+  background-color: #b0b0b0;
+}
+
+.btn-primary:hover[disabled] {
+  background-color: #b0b0b0;
+}
+
 .carousel img {
   border: 4px ridge lightgrey;
 }
@@ -62,4 +70,8 @@ img {
 
 .nav a:hover {
   color: lightblue;
+}
+
+#startBtn {
+  margin-left: 24px;
 }

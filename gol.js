@@ -1,6 +1,5 @@
 const ALIVE = "rgb(65, 65, 65)";
 const DEAD = "rgb(255, 255, 255)";
-const SIZE = 50;
 const SPEED = 72;
 const EXPL = [
     [0, 0], [0, 2], [1, 2], [2, 2],
@@ -29,17 +28,17 @@ const PENTA = [
 let cells = new Array();
 let inPlay = false;
 
-function isAlive(i, j) {
-    return (cells[i][j].style.backgroundColor === ALIVE);
+function isAlive(row, col) {
+    return (cells[row][col].style.backgroundColor === ALIVE);
 }
 
 function getNeighbours(i, j) {
     let neighbours = 0;
 
     for (let k = 0; k < OFFSET.length; ++k) {
-        let rWrap = (i + OFFSET[k][0] + cells.length) % cells.length;
-        let cWrap = (j + OFFSET[k][1] + cells.length) % cells.length;
-        if (isAlive(rWrap, cWrap))
+        let row = (i + OFFSET[k][0] + cells.length) % cells.length;
+        let col = (j + OFFSET[k][1] + cells.length) % cells.length;
+        if (isAlive(row, col))
             ++neighbours;
     }
     
@@ -80,8 +79,8 @@ function start() {
 }
 
 function create(seed) {
-    let rPos;
-    let cPos;
+    let row;
+    let col;
     
     if (!userHas(seed)) {
         alert("You need to visit our store!");
@@ -90,26 +89,26 @@ function create(seed) {
     
     switch (seed) {
         case "expl":
-            rPos = parseInt(cells.length - (cells.length * 0.25));
-            cPos = parseInt(cells.length - (cells.length * 0.85));
+            row = parseInt(cells.length - (cells.length * 0.25));
+            col = parseInt(cells.length - (cells.length * 0.85));
             for (let i = 0; i < EXPL.length; ++i)
-                cells[rPos + EXPL[i][0]][cPos + EXPL[i][1]].style.backgroundColor = ALIVE;
+                cells[row + EXPL[i][0]][col + EXPL[i][1]].style.backgroundColor = ALIVE;
             break;
         case "glider":
-            rPos = cPos = parseInt(cells.length - (cells.length * 0.85));
+            row = col = parseInt(cells.length - (cells.length * 0.85));
             for (let i = 0; i < GLIDER.length; ++i)
-                cells[rPos + GLIDER[i][0]][cPos + GLIDER[i][1]].style.backgroundColor = ALIVE;
+                cells[row + GLIDER[i][0]][col + GLIDER[i][1]].style.backgroundColor = ALIVE;
             break;
         case "lwss":
-            rPos = parseInt(cells.length / 2);
-            cPos = parseInt(cells.length - (cells.length * 0.25));
+            row = parseInt(cells.length / 2);
+            col = parseInt(cells.length - (cells.length * 0.25));
             for (let i = 0; i < LWSS.length; ++i)
-                cells[rPos + LWSS[i][0]][cPos + LWSS[i][1]].style.backgroundColor = ALIVE;
+                cells[row + LWSS[i][0]][col + LWSS[i][1]].style.backgroundColor = ALIVE;
             break;
         case "penta":
-            rPos = cPos = parseInt(cells.length / 2);
+            row = col = parseInt(cells.length / 2);
             for (let i = 0; i < PENTA.length; ++i)
-                cells[rPos + PENTA[i][0]][cPos + PENTA[i][1]].style.backgroundColor = ALIVE;
+                cells[row + PENTA[i][0]][col + PENTA[i][1]].style.backgroundColor = ALIVE;
             break;
         default:
             console.log("error: malformed seed: " + seed);
@@ -122,11 +121,11 @@ function init(size) {
     let world = document.getElementById("world");
     let cell;
 
-    for (let i = 0; i < size; ++i) {
+    for (let i = 0; i < SIZE; ++i) {
         row = document.createElement("tr");
         world.appendChild(row);
 
-        for (let j = 0; j < size; ++j) {
+        for (let j = 0; j < SIZE; ++j) {
             cell = document.createElement("td");
             cell.width = "12px";
             cell.height = "12px";
@@ -149,7 +148,7 @@ function main() {
     let explBtn = document.getElementById("explBtn");
     let startBtn = document.getElementById("startBtn");
     
-    init(SIZE);
+    init();
     
     gliderBtn.addEventListener("click", function() { create("glider"); });
     lwssBtn.addEventListener("click", function() { create("lwss"); });

@@ -40,7 +40,7 @@
     <div class="container">
       <div class="row offset-lg-11 offset-md-9 offset-sm-9 col-lg-1 col-md-3 col-sm-3">
         <span id="logUser"></span>
-	  </div>
+      </div>
       <div class="row">
         <div class="col-12 col-lg-6">
           <h1 class="display-4">Conway's Game of Life</h1>
@@ -83,10 +83,10 @@
             <div class="form-group">
               <label>Password</label>
               <input type="password" class="form-control" id="EnterPassword" required> 
-           </div>
+            </div>
             <div>
               <button id="logInBtn" onclick="login()" class="btn btn-primary">Log In</button>
-	      <small id="userHelp"></small>
+              <small id="userHelp"></small>
             </div>
           </form>
         </div>
@@ -106,12 +106,12 @@
 
 	function onPageLoad() {
 		if (localStorage.loggedInUser == null) {
-				localStorage.loggedInUser = "testuser@test.ie";
-				user.userName = localStorage.loggedInUser;
+			localStorage.loggedInUser = "testuser@test.ie";
+			user.userName = localStorage.loggedInUser;
 		}
 		if (localStorage.loggedPass == null) {
-				localStorage.loggedPass = "testPass";
-				user.userPass = localStorage.loggedPass;
+			localStorage.loggedPass = "testPass";
+			user.userPass = localStorage.loggedPass;
 		}
 		document.getElementById("EnterUserName").setAttribute("value", user.userName);
 		document.getElementById("EnterPassword").setAttribute("value", user.userPass);

@@ -45,28 +45,28 @@
       </div>
       <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-2 border"><h5 id="gName"></h5></div>
+        <div class="col-md-2 border">Glider</h5></div>
         <div class="col-md-2 border"><h5 id="gQuanity"></h5></div>
         <div class="col-md-2 border"><h5 id="gPrice"></h5></div>
         <div class="col-md-3"></div>
       </div>
-      <div class="row">
+	  <div class="row">
         <div class="col-md-3 "></div>
-        <div class="col-md-2 border"><h5 id="lName"></h5></div>
+        <div class="col-md-2 border">Spaceship</div>
         <div class="col-md-2 border"><h5 id="lQuanity"></h5></div>
         <div class="col-md-2 border"><h5 id="lPrice"></h5></div>
         <div class="col-md-3 "></div>
       </div>
       <div class="row">
         <div class="col-md-3 "></div>
-        <div class="col-md-2 border"><h5 id="pName"></h5></div>
+        <div class="col-md-2 border">Penta</div>
         <div class="col-md-2 border"><h5 id="pQuanity"></h5></div>
         <div class="col-md-2 border"><h5 id="pPrice"></h5></div>
         <div class="col-md-3 "></div>
       </div>
       <div class="row">
         <div class="col-md-3 "></div>
-        <div class="col-md-2 border"><h5 id="eName"></h5></div>
+        <div class="col-md-2 border">Detonator</div>
         <div class="col-md-2 border"><h5 id="eQuanity"></h5></div>
         <div class="col-md-2 border"><h5 id="ePrice"></h5></div>
         <div class="col-md-3 "></div>
@@ -90,55 +90,47 @@
           	<button class="btn btn-primary" type="button" onclick="coupon()">Apply</button>
         	</div>
       	</div>
-				<!-- Add buttons (EL) -->
+			<!-- Add buttons (EL) -->
 	  		<button type="button" class="btn btn-primary" onclick="buy()">Buy pieces</button>
-				<button type="button" class="btn btn-primary" onclick="cancel()">Cancel pieces</button>
+			<button type="button" class="btn btn-primary" onclick="cancel()">Cancel pieces</button>
 	  	</center>
     </div>
   </body>
 </html>
 <script>
-
-  let gTotal, lTotal, pTotal, eTotal, cTotal, qTotal;
-  let glider = JSON.parse(localStorage.getItem('glider'));
-	let lwss = JSON.parse(localStorage.getItem('lwss'));
-	let penta = JSON.parse(localStorage.getItem('penta'));
-  let expl = JSON.parse(localStorage.getItem('expl'));
+	
+	let gTotal, lTotal, pTotal, eTotal, nQTotal, nCTotal;
+	let cart = JSON.parse(localStorage.getItem('cart'));
 
   if (localStorage.userInfo == null) {
     addUserToStorage = { userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0 };
     localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
   }
-   
-  let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  
+  let userInfo = JSON.parse(localStorage.getItem('userInfo'));  
   display();
 
 function display() {
-	document.getElementById("gName").innerHTML = glider.name;
-	document.getElementById("gQuanity").innerHTML = glider.quantity;
-	gTotal = glider.quantity * glider.price; 
+	document.getElementById("gQuanity").innerHTML = cart.nGliders;
+	gTotal = cart.nGliders * 1; 
 	document.getElementById("gPrice").innerHTML = "€" + gTotal;
 	
-	document.getElementById("lName").innerHTML = lwss.name;
-	document.getElementById("lQuanity").innerHTML = lwss.quantity;
-	lTotal = lwss.quantity * lwss.price; 
+	document.getElementById("lQuanity").innerHTML = cart.nLwss;
+	lTotal = cart.nLwss * 2.5; 
 	document.getElementById("lPrice").innerHTML = "€" + lTotal;
 	
-	document.getElementById("pName").innerHTML = penta.name;
-	document.getElementById("pQuanity").innerHTML = penta.quantity;
-	pTotal = penta.quantity * penta.price; 
+	document.getElementById("pQuanity").innerHTML = cart.nPenta;
+	pTotal = cart.nPenta * 5.99; 
 	document.getElementById("pPrice").innerHTML = "€" + pTotal;
 	
-	document.getElementById("eName").innerHTML = expl.name;
-	document.getElementById("eQuanity").innerHTML = expl.quantity;
-	eTotal = expl.quantity * expl.price; 
+	document.getElementById("eQuanity").innerHTML = cart.nExpl;
+	eTotal = cart.nExpl * 6.99; 
 	document.getElementById("ePrice").innerHTML = "€" + eTotal;
 	
-	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
-	cTotal = gTotal + lTotal + pTotal + eTotal;
-	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
-	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+	nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
+	nCTotal = gTotal + lTotal + pTotal + eTotal;
+	
+	document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
+	document.getElementById("cTotal").innerHTML = "€" + nCTotal;
 }
 
 function coupon() {
@@ -146,8 +138,8 @@ function coupon() {
 	if(couponNumber == 12345)
 	{
 		 alert("Coupon Successful");
-		 ccTotal = cTotal - (cTotal/10)
-		document.getElementById("cTotal").innerHTML = "€" + ccTotal;
+		 nCTotal -= (nCTotal/10)
+		document.getElementById("cTotal").innerHTML = "€" + nCTotal;
 	}	
 	else
 	{
@@ -156,84 +148,48 @@ function coupon() {
 }
 
 function buy() {
-  alert("Purcase(s) was sucessfull");
-    
-  userInfo.gliderOwned += glider.quantity;
-  userInfo.lwssOwned += lwss.quantity;
-  userInfo.pentaOwned += penta.quantity;
-  userInfo.explOwned += expl.quantity;
+  alert("Purcase(s) was sucessfull");    
+  userInfo.gliderOwned += cart.nGliders;
+  userInfo.lwssOwned += cart.nLwss;
+  userInfo.pentaOwned += cart.nPenta;
+  userInfo.explOwned += cart.nExpl;
   localStorage.setItem('userInfo', JSON.stringify(userInfo));
-  
-	glider.quantity = 0;
-	localStorage.setItem ('glider', JSON.stringify(glider));	
-	lwss.quantity = 0;
-	localStorage.setItem ('lwss', JSON.stringify(lwss));
-	penta.quantity = 0;
-	localStorage.setItem ('penta', JSON.stringify(penta));
-	expl.quantity = 0;
-	localStorage.setItem ('expl', JSON.stringify(expl));
-	
-	document.getElementById("gName").innerHTML = glider.name;
-	document.getElementById("gQuanity").innerHTML = glider.quantity;
-	gTotal = glider.quantity * glider.price; 
-	document.getElementById("gPrice").innerHTML = "€" + gTotal;
-	
-	document.getElementById("lName").innerHTML = lwss.name;
-	document.getElementById("lQuanity").innerHTML = lwss.quantity;
-	lTotal = lwss.quantity * lwss.price; 
-	document.getElementById("lPrice").innerHTML = "€" + lTotal;
-	
-	document.getElementById("pName").innerHTML = penta.name;
-	document.getElementById("pQuanity").innerHTML = penta.quantity;
-	pTotal = penta.quantity * penta.price; 
-	document.getElementById("pPrice").innerHTML = "€" + pTotal;
-	
-	document.getElementById("eName").innerHTML = expl.name;
-	document.getElementById("eQuanity").innerHTML = expl.quantity;
-	eTotal = expl.quantity * expl.price; 
-	document.getElementById("ePrice").innerHTML = "€" + eTotal;
-	
-	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
-	cTotal = gTotal + lTotal + pTotal + eTotal;
-	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
-	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+  reset();
 }
 
 
 function cancel() {
 	alert("All items cancled");
-	glider.quantity = 0;
-	localStorage.setItem ('glider', JSON.stringify(glider));	
-	lwss.quantity = 0;
-	localStorage.setItem ('lwss', JSON.stringify(lwss));
-	penta.quantity = 0;
-	localStorage.setItem ('penta', JSON.stringify(penta));
-	expl.quantity = 0;
-	localStorage.setItem ('expl', JSON.stringify(expl));
+	reset();
+}
+
+function reset() {
+	cart.nGliders = 0;	
+	cart.nLwss = 0;
+	cart.nPenta = 0;
+	cart.nExpl = 0;
+	localStorage.cart = JSON.stringify(cart);
 	
-	document.getElementById("gName").innerHTML = glider.name;
-	document.getElementById("gQuanity").innerHTML = glider.quantity;
-	gTotal = glider.quantity * glider.price; 
+	document.getElementById("gQuanity").innerHTML = cart.nGliders;
+	gTotal = cart.nGliders * 1; 
 	document.getElementById("gPrice").innerHTML = "€" + gTotal;
 	
-	document.getElementById("lName").innerHTML = lwss.name;
-	document.getElementById("lQuanity").innerHTML = lwss.quantity;
-	lTotal = lwss.quantity * lwss.price; 
+	document.getElementById("lQuanity").innerHTML = cart.nLwss;
+	lTotal = cart.nLwss * 2.5; 
 	document.getElementById("lPrice").innerHTML = "€" + lTotal;
 	
-	document.getElementById("pName").innerHTML = penta.name;
-	document.getElementById("pQuanity").innerHTML = penta.quantity;
-	pTotal = penta.quantity * penta.price; 
-	document.getElementById("pPrice").innerHTML = "€" + pTotal;
+	document.getElementById("pQuanity").innerHTML = cart.nPenta;
+	pTotal = cart.nPenta * 5.99; 
+	document.getElementById("pPrice").innerHTML = "€" + pTotal.toFixed(2);
 	
-	document.getElementById("eName").innerHTML = expl.name;
-	document.getElementById("eQuanity").innerHTML = expl.quantity;
-	eTotal = expl.quantity * expl.price; 
-	document.getElementById("ePrice").innerHTML = "€" + eTotal;
+	document.getElementById("eQuanity").innerHTML = cart.nExpl;
+	eTotal = cart.nExpl * 6.99; 
+	document.getElementById("ePrice").innerHTML = "€" + eTotal.toFixed(2);
 	
-	qTotal = glider.quantity + lwss.quantity + penta.quantity + expl.quantity
-	cTotal = gTotal + lTotal + pTotal + eTotal;
-	document.getElementById("qTotal").innerHTML = qTotal + " pieces";
-	document.getElementById("cTotal").innerHTML = "€" + cTotal;
+	nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
+	nCTotal = gTotal + lTotal + pTotal + eTotal;
+	
+	document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
+	document.getElementById("cTotal").innerHTML = "€" + nCTotal;
 }
 </script>

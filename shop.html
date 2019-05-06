@@ -9,6 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="gol.js"></script>
+	<style>
+	</style>
 	<title>Game of Life -- Shop</title>
 		<script src="shop.js"></script>
 	</head>
@@ -40,66 +42,57 @@
 			<div class="container">
 				<div class="row">
 					<div   class="col-md-3 col-sm-12 ">
-					<div class="card" style="padding: 1px;" style="width: 17rem;">
+					<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
 					<img src="images/glider.gif" class="card-img-top"  height="200" width="150" alt="glider">
 					<div class="card-body">
 					<h5 class="card-title">GLIDER</h5>
-					<p class="card-text" id="gDes"></p>
-					Enter quantity:<input id="gliderInput" style="width: 30px;"/><button type="button" class="btn btn-primary" onclick="addGlider()">Add to cart</button>
+					<p class="card-text" id="gDes"></p><br><br>
+					Enter quantity:<input id="gliderInput" style="width: 30px;" placeholder="0"/>
 </div>
 </div>
 
 </div>
 
 <div class="col-md-3  col-sm-12 ">
-<div class="card" style="padding: 1px;" style="width: 17rem;">
+<div class="card" style="padding: 1px;" style="width: 17rem;"  height="300px">
 <img src="images/Lwss.gif" class="card-img-top"  height="200" width="150" alt="Spaceship">
 <div class="card-body">
 <h5 class="card-title">Spaceship</h5>
-<p class="card-text" id="lDes"></p>
-Enter quantity:<input id="lwssInput" style="width: 30px;"/><button type="button" class="btn btn-primary" onclick="addLwss()">Add to cart</button>
+<p class="card-text" id="lDes"></p><br><br>
+Enter quantity:<input id="lwssInput" placeholder="0" style="width: 30px;"/>
 </div>
 </div>
 </div>
 <div  class="col-md-3 col-sm-12 ">
-	<div class="card" style="padding: 1px;" style="width: 17rem;">
+	<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
 	<img src="images/Pentadecathlon.gif" class="card-img-top" height="200" width="150" alt="Pentadecathlon">
 	<div class="card-body">
 	<h5 class="card-title">Pentadecathlon</h5>
-	<p class="card-text" id="pDes"></p>
-	Enter quantity:<input id="pentaInput" style="width: 30px;"/><button type="button" class="btn btn-primary" onclick="addPenta()">Add to cart</button>
+	<p class="card-text" id="pDes"></p><br>
+	Enter quantity:<input id="pentaInput" placeholder="0" style="width: 30px;"/>
 	</div>
 	</div>
 		</div>
 			<div class="col-md-3 col-sm-12 ">
-			<div class="card" style="padding: 1px;" style="width: 17rem;">
+			<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
 				<img src="images/pulsar.gif" class="card-img-top"  height="200" width="150" alt="Pulsar">
 				<div class="card-body">
 					<h5 class="card-title">Detonator</h5>
 					<p class="card-text" id="eDes"></p>
-					Enter quantity:<input id="explInput"  style="width: 30px;"/><button type="button" class="btn btn-primary" onclick="addExpl()" >Add to cart</button>
+					Enter quantity:<input id="explInput" placeholder="0" style="width: 30px;"/>
 				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </div>
 </div>
 </div>
+<button type="button" class="btn btn-primary" onclick="addToCart()">Add pieces to cart</button><!-- if statment login-->
+
 		</center>
 	</body>
 </html>
 <script>
-
-function display() {
-		document.getElementById("gDes").innerHTML = "A basic piece which perform a simple task. It travels in a diagonal direction. €" + glider.price + " a piece";
-		
-		document.getElementById("lDes").innerHTML = "A unique piece which perform a simple task. It travels in a straight direction. €" + lwss.price + " a piece";
-		
-		document.getElementById("pDes").innerHTML = "A basic enough piece which perform a task for infinity. It can be broken by other piece upon collision. €" + penta.price + " a piece";
-		
-		document.getElementById("eDes").innerHTML = "A simple piece which perform a complex task for infinity. It can be broken by other piece upon collision. €" + expl.price + " a piece";
-}
-
 display();
 
 </script>

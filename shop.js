@@ -6,7 +6,7 @@ function addToCart() {
 	if(sessionStorage.loggedIn == 1)
 	{
 		/*Add items to the cart(EL) */
-		alert("Successfuly added to cart");
+		alert("Successfully added to cart");
 		cart.nGliders += Number(document.getElementById("gliderInput").value);
 		cart.nLwss +=  Number(document.getElementById("lwssInput").value);
 		cart.nPenta +=  Number(document.getElementById("pentaInput").value);
@@ -15,7 +15,7 @@ function addToCart() {
 	}
 	else
 	{
-		alert("please sign in");
+		alert("Please sign in");
 	}
 }
 /*Displays important infomation on page(EL) */

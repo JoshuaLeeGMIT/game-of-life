@@ -116,6 +116,12 @@
       localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
     }
 		
+		// Add cart object to local storage if not already present (SB)
+		if (localStorage.cart == null) {
+			addCartToStorage = { nGliders: 0, nLwss: 0, nPenta: 0, nExpl: 0 };
+      localStorage.setItem('cart', JSON.stringify(addCartToStorage));
+		}
+		
 		// Get userinfo object from local storage, Pre-fill Email and Password fields (SB)
 		user = JSON.parse(localStorage.getItem('userInfo'));   
 		document.getElementById("EnterUserName").setAttribute("value", user.userEmail);

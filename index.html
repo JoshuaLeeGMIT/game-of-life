@@ -91,8 +91,9 @@
               <input type="password" class="form-control" id="EnterPassword" required> 
             </div>
             <div>
-              <button id="logInBtn" onclick="login()" class="btn btn-primary">Log In</button>
-              <small id="userHelp"></small>
+              <button id="logInBtn" onclick="logIn()" class="btn btn-primary">Log In</button>
+							<button id="logOutBtn" onclick="logOut()" class="btn btn-secondary">Log Out</button>
+							<small id="loginHelp"></small>
             </div>
           </form>
         </div>
@@ -101,65 +102,63 @@
   </body>
 </html>
 <script>    
-	// Declare object (SB)
-	// Pre-coded username and password
-	let user = {userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderPurchased: 0, lwssPurchased: 0, pentaPurchased: 0, explPurchased: 0};
-
 	// Declare variables (SB)
-	let enteredUser; let enteredPass;
+	let enteredUser; let enteredPassword; let user;
 
 	onPageLoad();
 
-	function onPageLoad() {
-		if (localStorage.loggedInUser == null) {
-			localStorage.loggedInUser = "testuser@test.ie";
-			user.userName = localStorage.loggedInUser;
-		}
-		if (localStorage.loggedPass == null) {
-			localStorage.loggedPass = "testPass";
-			user.userPass = localStorage.loggedPass;
-		}
-    
+	function onPageLoad() {  
+		// Add object to local storage if not already present(SB)
+		// Pre-coded username and password
     if (localStorage.userInfo == null) {
-      addUserToStorage = {userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0};
+			addUserToStorage = {userEmail: "testuser@gmit.ie", userPassword: "testPass", gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0};
       localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
     }
+		
+		user = JSON.parse(localStorage.getItem('userInfo'));
     
-		document.getElementById("EnterUserName").setAttribute("value", localStorage.loggedInUser);
-		document.getElementById("EnterPassword").setAttribute("value", localStorage.loggedPass);
-		loginCheck();
+		document.getElementById("EnterUserName").setAttribute("value", user.userEmail);
+		document.getElementById("EnterPassword").setAttribute("value", user.userPassword);
+		loggedInCheck();
 	}
 
 	// Add function login (SB)
-	function login() {
+	function logIn() {
 		enteredUser = document.getElementById("EnterUserName").value;
-		enteredPass = document.getElementById("EnterPassword").value;
+		enteredPassword = document.getElementById("EnterPassword").value;
 
-		if (enteredUser == localStorage.loggedInUser && enteredPass == localStorage.loggedPass) {
-			sessionStorage.loggedIn = 1;
+		if (enteredUser == user.userEmail && enteredPassword == user.userPassword) {
+			sessionStorage.loggedIn = 1;		
 		}
 		else {
 			sessionStorage.loggedIn = 0;
 		}
 	}
-
-	// Add function loginCheck (SB)
-	function loginCheck() {
+	
+	function logOut() {
+		sessionStorage.removeItem("loggedIn");
+	}
+	
+	function loggedInCheck() {
 		if (sessionStorage.loggedIn != null) {
-			if (sessionStorage.loggedIn == 0) {
-				document.getElementById("userHelp").setAttribute("class", "form-text text-danger");
-				document.getElementById("userHelp").innerHTML = "Login Incorrect";
-			}
-			else if (sessionStorage.loggedIn == 1) {
-				document.getElementById("userHelp").setAttribute("class", "form-text text-success");
-				document.getElementById("userHelp").innerHTML = "Login Successful";
+			if (sessionStorage.loggedIn == 1) {
+				document.getElementById("loginHelp").setAttribute("class", "form-text text-success");
+				document.getElementById("loginHelp").innerHTML = "Logged In";
 				document.getElementById("logInBtn").setAttribute("disabled", "disabled");
-				document.getElementById("logInBtn").setAttribute("class", "btn btn-secondary")
-				document.getElementById("logUser").innerHTML = user.userName;
+				document.getElementById("logInBtn").setAttribute("class", "btn btn-secondary");
+				document.getElementById("logOutBtn").removeAttribute("disabled");
+      	document.getElementById("logOutBtn").setAttribute("class", "btn btn-primary");
+				document.getElementById("logUser").innerHTML = user.userEmail;
 			}
 			else {
-				document.getElementById("userHelp").innerHTML = null;
+				document.getElementById("loginHelp").setAttribute("class", "form-text text-danger");
+				document.getElementById("loginHelp").innerHTML = "Login Incorrect";
 			}
+		}
+		else {
+				document.getElementById("loginHelp").innerHTML = null;
+				document.getElementById("logOutBtn").setAttribute("disabled", "disabled");
+    		document.getElementById("logOutBtn").setAttribute("class", "btn btn-secondary");
 		}
 	}
 </script>

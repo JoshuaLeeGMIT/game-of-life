@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
+		<!-- Add navbar[Copied across from index.html] (SB) -->
     <div class="container-fluid">
       <div class="flexbox">
         <ul class="nav justify-content-center">
@@ -37,10 +38,14 @@
         </ul>	
       </div>
     </div>
+		<!-- Displays message informing you to log in to change account details if not logged in (SB) -->
 		<div id="infoMessage" class="container">
 			<h4>Please first login on the <a href="index.html"><u>Home</u></a> page in order to change your account details.</h4>
 		</div>
+		<!-- Added (SB) - <form> code blocks orginated from -> https://getbootstrap.com/docs/4.0/components/forms/ -->
+		<!-- Added id's, required attributes, disabled attributes, minlength attributes, oninput events, onsubmit events (SB) -->
     <div id="updateAccount" class="container">
+			<!-- onsubmit will ensure email will not save if not in a valid email format (SB) -->
       <form class="form col-lg-6" onsubmit="updateEmail()">
         <div class="form-group">
           <label>New Email Address</label>
@@ -52,7 +57,8 @@
           <small id="changeEmailInfo" class="text-success"></small>
         </div>
       </form>
-      <form class="form col-lg-6">
+			<!-- onsubmit will ensure password will not save if not at least 8 characters (SB) -->
+      <form class="form col-lg-6" onsubmit="updatePassword()">
         <div class="form-group">
           <label>Current Password</label>
           <input type="password" id="currentPassword" class="form-control mx-sm-3" oninput="currPasswordCheck()">
@@ -69,7 +75,7 @@
           <small id="confirmPassHelp" class="text-danger"></small>
         </div>
         <div>
-          <button type="submit" id="changePassBtn" class="btn btn-secondary" disabled onclick="updatePass()">Change Password</button>
+					<button type="submit" id="changePassBtn" class="btn btn-secondary" disabled>Change Password</button>
           <small id="changePassInfo" class="text-success"></small>
         </div>
       </form>
@@ -78,14 +84,17 @@
 </html>
 
 <script>
+	// Declare variables (SB)
   let currPassword; let newPassword; let reEnterPassword; let updatedPassword; let updatedEmail; let user; let correctPassword; let passwordsMatch;
 
   onPageLoad();
 
+	// Add onPageLoad, displays form if logged in, if not logged in displays message asking you to log in first (SB)
   function onPageLoad() {
 		if (sessionStorage.loggedIn == 1) {
 			document.getElementById("infoMessage").setAttribute("hidden", "hidden");
 			user = JSON.parse(localStorage.getItem('userInfo'));
+			// Displays current Email address
     	document.getElementById("currEmailInfo").innerHTML = "Current Email Address - " + user.userEmail;
     	checkPwdUpdate();
 		}
@@ -94,6 +103,7 @@
 		}
   }
 
+	// Add currPasswordCheck, ensures input password matches current password enables new password fields once correctly entered (SB)
   function currPasswordCheck() {
     currPassword = document.getElementById("currentPassword").value;
     if (currPassword != "" && currPassword != user.userPassword) {         
@@ -114,6 +124,7 @@
     }
   }
 
+	// Add changePassword, ensures input passwords match each other once they do enable the submit button (SB)
   function changePassword(){
     newPassword = document.getElementById("newPassword").value;
     reEnterPassword = document.getElementById("reNewPassword").value;
@@ -139,18 +150,22 @@
     }
   }
 
-  function updatePass() {
+	/* Add updatePassword, updates the new password value to the user object and userInfo in Local Storage
+		 also adds a value to Session Storage so a message indicating the password successfully changed appears (SB) */
+  function updatePassword() {
     user.userPassword = updatedPassword;
     sessionStorage.updatePasswordSuccess = 1;
 		updateUserStorage();
   }
 
+	// Add updateEmail, updates the new email value to the user object and userInfo in Local Storage (SB)
   function updateEmail() {
     updatedEmail = document.getElementById("newEmail").value;
     user.userEmail = updatedEmail;
 		updateUserStorage();
   }
 
+	// Add checkPwdUpdate, checks Session Storage for value of 1 if true displays message that the password successfully changed (SB)
   function checkPwdUpdate() {
     if (sessionStorage.updatePasswordSuccess == 1) {
       document.getElementById("changePassInfo").innerHTML = "Password Successfully Changed";
@@ -158,6 +173,7 @@
     }
   }
 	
+	// Update userInfo in Local Storage with new email/password (SB)
 	function updateUserStorage() {
 		localStorage.setItem('userInfo', JSON.stringify(user));
 	}

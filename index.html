@@ -40,6 +40,7 @@
       </div>
     </div>
     <div class="container">
+			<!-- Display user email in top right of the screen if logged in (SB) -->
       <div class="row offset-lg-11 offset-md-9 offset-sm-9 col-lg-1 col-md-3 col-sm-3">
         <span id="logUser"></span>
       </div>
@@ -78,9 +79,9 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <!-- Add col; Add required attribute; Add onclick event (SB) -->
+				<!-- Added (SB) - <form> code block orginated from -> https://getbootstrap.com/docs/4.0/components/forms/ -->
+        <!-- Added col, id's, required attributes, onclick events (SB) -->
         <div class="col-12 col-lg-6">
-          <!-- Added (SB) - form code block orginated from -> https://getbootstrap.com/docs/4.0/components/forms/ -->
           <form>    
             <div class="form-group">
               <label>Email address</label>
@@ -107,22 +108,22 @@
 
 	onPageLoad();
 
+	// Add function onPageLoad (SB)
 	function onPageLoad() {  
-		// Add object to local storage if not already present(SB)
-		// Pre-coded username and password
+		// Add object to local storage if not already present [Pre-coded username and password] (SB)
     if (localStorage.userInfo == null) {
-			addUserToStorage = {userEmail: "testuser@gmit.ie", userPassword: "testPass", gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0};
+			addUserToStorage = { userEmail: "testuser@gmit.ie", userPassword: "testPass", gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0 };
       localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
     }
 		
-		user = JSON.parse(localStorage.getItem('userInfo'));
-    
+		// Get userinfo object from local storage, Pre-fill Email and Password fields (SB)
+		user = JSON.parse(localStorage.getItem('userInfo'));   
 		document.getElementById("EnterUserName").setAttribute("value", user.userEmail);
 		document.getElementById("EnterPassword").setAttribute("value", user.userPassword);
 		loggedInCheck();
 	}
 
-	// Add function login (SB)
+	// Add function logIn, which sets loggedIn to 1 on successful login or 0 on failed login (SB)
 	function logIn() {
 		enteredUser = document.getElementById("EnterUserName").value;
 		enteredPassword = document.getElementById("EnterPassword").value;
@@ -135,10 +136,13 @@
 		}
 	}
 	
+	// Add function logOut, which will remove loggedIn from Session Storage (SB)
 	function logOut() {
 		sessionStorage.removeItem("loggedIn");
 	}
 	
+	/* Add function loggedInCheck, if loggedIn is 1 disable Log In button, enable Log Out button and display Logged In message
+		 if loggedIn is 0 display Login failed message, if loggedIn does not exist set Login message to null and disable Log Out button (SB) */
 	function loggedInCheck() {
 		if (sessionStorage.loggedIn != null) {
 			if (sessionStorage.loggedIn == 1) {

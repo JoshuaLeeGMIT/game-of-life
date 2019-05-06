@@ -37,7 +37,10 @@
         </ul>	
       </div>
     </div>
-    <div class="container">
+		<div id="infoMessage" class="container">
+			<h4>Please first login on the <a href="index.html"><u>Home</u></a> page in order to change your account details.</h4>
+		</div>
+    <div id="updateAccount" class="container">
       <form class="form col-lg-6" onsubmit="updateEmail()">
         <div class="form-group">
           <label>New Email Address</label>
@@ -52,17 +55,17 @@
       <form class="form col-lg-6">
         <div class="form-group">
           <label>Current Password</label>
-          <input type="password" id="currentPassword" class="form-control mx-sm-3" oninput="currPassCheck()">
+          <input type="password" id="currentPassword" class="form-control mx-sm-3" oninput="currPasswordCheck()">
           <small id="currPassIncorrect" class="text-danger"></small>
         </div>
         <div class="form-group">
           <label>New Password</label>
-          <input type="password" id="newPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePass()">
+          <input type="password" id="newPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePassword()">
           <small class="text-muted">Please use at least 8 characters</small>
         </div>
         <div class="form-group">
           <label>Confirm Password</label>
-          <input type="password" id="reNewPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePass()">
+          <input type="password" id="reNewPassword" class="form-control mx-sm-3" minlength="8" disabled oninput="changePassword()">
           <small id="confirmPassHelp" class="text-danger"></small>
         </div>
         <div>
@@ -75,65 +78,87 @@
 </html>
 
 <script>
-  let currPass; let newPass; let reEnterPass; let updatedPassword; let updatedEmail;       
+  let currPassword; let newPassword; let reEnterPassword; let updatedPassword; let updatedEmail; let user; let correctPassword; let passwordsMatch;
 
   onPageLoad();
 
   function onPageLoad() {
-    document.getElementById("currEmailInfo").innerHTML = "Current Email Address - " + localStorage.loggedInUser;
-    checkPwdUpdate();
+		if (sessionStorage.loggedIn == 1) {
+			document.getElementById("infoMessage").setAttribute("hidden", "hidden");
+			user = JSON.parse(localStorage.getItem('userInfo'));
+    	document.getElementById("currEmailInfo").innerHTML = "Current Email Address - " + user.userEmail;
+    	checkPwdUpdate();
+		}
+		else {			
+			document.getElementById("updateAccount").setAttribute("hidden", "hidden");
+		}
   }
 
-  function currPassCheck() {
-    currPass = document.getElementById("currentPassword").value;
-    if (currPass != "" && currPass != localStorage.loggedPass) {         
+  function currPasswordCheck() {
+    currPassword = document.getElementById("currentPassword").value;
+    if (currPassword != "" && currPassword != user.userPassword) {         
       document.getElementById("currPassIncorrect").innerHTML = "Enter Current Password";
+			
       // disables fields again if user enters correct password but then changes it
-      document.getElementById("newPassword").setAttribute("disabled", "disabled");
-      document.getElementById("reNewPassword").setAttribute("disabled", "disabled");
+			if (correctPassword) {
+				correctPassword = false;
+      	document.getElementById("newPassword").setAttribute("disabled", "disabled");
+      	document.getElementById("reNewPassword").setAttribute("disabled", "disabled");
+			}
     }
     else {
+			correctPassword = true;
       document.getElementById("currPassIncorrect").innerHTML = null;
       document.getElementById("newPassword").removeAttribute("disabled");
       document.getElementById("reNewPassword").removeAttribute("disabled");
     }
   }
 
-  function changePass(){
-    newPass = document.getElementById("newPassword").value;
-    reEnterPass = document.getElementById("reNewPassword").value;
+  function changePassword(){
+    newPassword = document.getElementById("newPassword").value;
+    reEnterPassword = document.getElementById("reNewPassword").value;
       
-    if ((newPass != null && newPass != "") && (reEnterPass != null && reEnterPass != "")) {
-      if (newPass != reEnterPass) {
+    if ((newPassword != null && newPassword != "") && (reEnterPassword != null && reEnterPassword != "")) {
+      if (newPassword != reEnterPassword) {
         document.getElementById("confirmPassHelp").innerHTML = "Passwords must match";
+				
         // disables button again if user enters two matching password but then changes one/both causing a mismatch
-        document.getElementById("changePassBtn").setAttribute("disabled", "disabled");
-        document.getElementById("changePassBtn").setAttribute("class", "btn btn-secondary");
+				if (passwordsMatch) {
+					passwordsMatch = false;
+        	document.getElementById("changePassBtn").setAttribute("disabled", "disabled");
+        	document.getElementById("changePassBtn").setAttribute("class", "btn btn-secondary");
+				}
       }
       else {
+				passwordsMatch = true;
         document.getElementById("confirmPassHelp").innerHTML = null;
         document.getElementById("changePassBtn").removeAttribute("disabled");
         document.getElementById("changePassBtn").setAttribute("class", "btn btn-primary");
-        updatedPassword = reEnterPass;
+        updatedPassword = reEnterPassword;
       }
     }
   }
 
   function updatePass() {
-    localStorage.loggedPass = updatedPassword;
-    sessionStorage.loggedIn = 2;
-    sessionStorage.updatePassSuccess = 1;
+    user.userPassword = updatedPassword;
+    sessionStorage.updatePasswordSuccess = 1;
+		updateUserStorage();
   }
 
   function updateEmail() {
     updatedEmail = document.getElementById("newEmail").value;
-    localStorage.loggedInUser = updatedEmail;
+    user.userEmail = updatedEmail;
+		updateUserStorage();
   }
 
   function checkPwdUpdate() {
-    if (sessionStorage.updatePassSuccess == 1) {
+    if (sessionStorage.updatePasswordSuccess == 1) {
       document.getElementById("changePassInfo").innerHTML = "Password Successfully Changed";
-      sessionStorage.removeItem("updatePassSuccess");
+      sessionStorage.removeItem("updatePasswordSuccess");
     }
   }
+	
+	function updateUserStorage() {
+		localStorage.setItem('userInfo', JSON.stringify(user));
+	}
 </script>

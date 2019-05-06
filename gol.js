@@ -84,7 +84,41 @@ function tick() {
 
 /* Function to check if the user owns the piece she wants to place (JL) */
 function userHas(seed) {
-    return true;
+    let userHas = false;
+    /* Retrieve the user info from local storage */
+    let invent = JSON.parse(localStorage.userInfo);
+
+    /* Returns true if the user owns more than 0 of the requested piece */
+    switch (seed) {
+        case "glider":
+            /* Sets userHas to true if any of the piece are owned */
+            userHas = (invent.gliderOwned > 0);
+            /* If the piece is owned, remove it as it has been used now */
+            if (userHas)
+                --invent.gliderOwned;
+            break;
+        case "lwss":
+            userHas = (invent.lwssOwned > 0);
+            if (userHas)
+                --invent.lwssOwned;
+            break;
+        case "penta":
+            userHas = (invent.pentaOwned > 0);
+            if (userHas)
+                --invent.pentaOwned;
+            break;
+        case "expl":
+            userHas = (invent.explOwned > 0);
+            if (userHas)
+                --invent.explOwned;
+            break;
+        default:
+            break;
+    }
+    /* Update userInfo in local storage */
+    localStorage.userInfo = JSON.stringify(invent);
+
+    return userHas;
 }
 
 /* Function to conditionally start the game (JL) */
@@ -109,7 +143,7 @@ function create(seed) {
     
     /* Checks if the user owns the piece she wants to use (JL) */
     if (!userHas(seed)) {
-        alert("You need to visit our store!");
+        alert("No " + seed + "s left, you need to visit our store!");
         return;
     }
     

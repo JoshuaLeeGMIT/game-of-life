@@ -1,8 +1,8 @@
 <!DOCTYPE html>
+<!--Conways game of life shop -->
 <html>
 	<head>
-	  <!-- Basic page setup (EL, JL) -->
-	  <meta charset="utf-8"/>
+	<meta charset="utf-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
@@ -10,12 +10,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="gol.js"></script>
-	  <title>Game of Life -- Shop</title>
+	<style>
+	</style>
+	<title>Game of Life -- Shop</title>
 		<script src="shop.js"></script>
 	</head>
 	<body>
+<<<<<<< HEAD
     <!-- HTML for the navbar--from https://getbootstrap.com/docs/4.3/components/navs/ (JL) -->
 	  <div class="flexbox">
+=======
+	   <div class="flexbox">
+>>>>>>> f01b01c1cbf5c48af0cabb075d9b248e6154f469
       <ul class="nav justify-content-center">
         <li class="nav-item">
           <a class="nav-link active" href="index.html">home</a>
@@ -37,61 +43,60 @@
         </li>
       </ul>
     </div>
-		<center>
-			<div class="container">
-				<div class="row">
-					<div   class="col-md-3 col-sm-12 ">
-					<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
-					<img src="images/glider.gif" class="card-img-top"  height="200" width="150" alt="glider">
-					<div class="card-body">
-					<h5 class="card-title">GLIDER</h5>
-					<p class="card-text" id="gDes"></p><br><br>
-					Enter quantity:<input id="gliderInput" style="width: 30px;" placeholder="0"/>
-</div>
-</div>
-
-</div>
-
-<div class="col-md-3  col-sm-12 ">
-<div class="card" style="padding: 1px;" style="width: 17rem;"  height="300px">
-<img src="images/Lwss.gif" class="card-img-top"  height="200" width="150" alt="Spaceship">
-<div class="card-body">
-<h5 class="card-title">Spaceship</h5>
-<p class="card-text" id="lDes"></p><br><br>
-Enter quantity:<input id="lwssInput" placeholder="0" style="width: 30px;"/>
-</div>
-</div>
-</div>
-<div  class="col-md-3 col-sm-12 ">
-	<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
-	<img src="images/Pentadecathlon.gif" class="card-img-top" height="200" width="150" alt="Pentadecathlon">
-	<div class="card-body">
-	<h5 class="card-title">Pentadecathlon</h5>
-	<p class="card-text" id="pDes"></p><br>
-	Enter quantity:<input id="pentaInput" placeholder="0" style="width: 30px;"/>
-	</div>
-	</div>
-		</div>
-			<div class="col-md-3 col-sm-12 ">
+<center>
+<div class="container">
+	<div class="row">
+		<!--Displays the Glider's infomation(EL) -->
+		<div class="col-md-3 col-sm-12 ">
 			<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
-				<img src="images/pulsar.gif" class="card-img-top"  height="200" width="150" alt="Pulsar">
+				<img src="images/glider.gif" class="card-img-top"  height="200" width="150" alt="glider">
 				<div class="card-body">
-					<h5 class="card-title">Detonator</h5>
-					<p class="card-text" id="eDes"></p>
-					Enter quantity:<input id="explInput" placeholder="0" style="width: 30px;"/>
-				</div>
+				<h5 class="card-title">GLIDER</h5>
+				<p class="card-text" id="gDes"></p><br><br>
+				Enter quantity:<input id="gliderInput" style="width: 30px;" placeholder="0"/>
+			</div>
+		</div>
+	</div>
+	<!--Displays the Spaceship's infomation(EL) -->
+	<div class="col-md-3  col-sm-12 ">
+		<div class="card" style="padding: 1px;" style="width: 17rem;"  height="300px">
+			<img src="images/Lwss.gif" class="card-img-top"  height="200" width="150" alt="Spaceship">
+			<div class="card-body">
+				<h5 class="card-title">Spaceship</h5>
+				<p class="card-text" id="lDes"></p><br><br>
+				Enter quantity:<input id="lwssInput" placeholder="0" style="width: 30px;"/>
+			</div>
+		</div>
+	</div>
+	<!--Displays the Pentadecathlon's infomation(EL) -->
+	<div  class="col-md-3 col-sm-12 ">
+		<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
+			<img src="images/Pentadecathlon.gif" class="card-img-top" height="200" width="150" alt="Pentadecathlon">
+			<div class="card-body">
+				<h5 class="card-title">Pentadecathlon</h5>
+				<p class="card-text" id="pDes"></p><br>
+				Enter quantity:<input id="pentaInput" placeholder="0" style="width: 30px;"/>
+			</div>
+		</div>
+	</div>
+	<!--Displays the Detonator's infomation(EL) -->
+	<div class="col-md-3 col-sm-12 ">
+		<div class="card" style="padding: 1px;" style="width: 17rem;" height="300px">
+			<img src="images/pulsar.gif" class="card-img-top"  height="200" width="150" alt="Pulsar">
+			<div class="card-body">
+				<h5 class="card-title">Detonator</h5>
+				<p class="card-text" id="eDes"></p>
+				Enter quantity:<input id="explInput" placeholder="0" style="width: 30px;"/>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-</div>
-<button type="button" class="btn btn-primary" onclick="addToCart()">Add pieces to cart</button><!-- if statment login-->
-
-		</center>
-	</body>
+<!-- On click calls the function addToCart(EL)-->
+<button type="button" class="btn btn-primary" onclick="addToCart()">Add pieces to cart</button>
+</center>
+</body>
 </html>
 <script>
+/*Calls display function form shop.js (EL)*/
 display();
-
 </script>

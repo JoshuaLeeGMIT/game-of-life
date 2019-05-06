@@ -1,7 +1,7 @@
 /* The colours used for the game pieces (JL) */
 const ALIVE = "rgb(65, 65, 65)";
 const DEAD = "rgb(255, 255, 255)";
-/* The size for game board, and the speed of its "ticks" (JL) */
+/* The size for game board, and the speed of its "ticks" (in ms) (JL) */
 const SIZE = 50;
 const SPEED = 72;
 /* The game pieces stored as arrays of relative positions (JL) */
@@ -75,7 +75,7 @@ function tick() {
         }
     }
 
-    /* Two loops to update cull and birth the cells that need updating (JL) */
+    /* Two loops to cull and birth the cells that need updating (JL) */
     for (let i = 0; i < births.length; ++i)
         cells[births[i][0]][births[i][1]].style.backgroundColor = ALIVE;
     for (let i = 0; i < deaths.length; ++i)
@@ -114,12 +114,13 @@ function create(seed) {
     }
     
     /*
-     * This switch block creates the piece the user corrected by checking
+     * This switch block creates the piece the user requested by checking
      * the seed string and using the relative position arrays of each
      * piece (JL)
      */
     switch (seed) {
         case "expl":
+            /* We hardcode the relative starting of each piece */
             row = parseInt(cells.length - (cells.length * 0.25));
             col = parseInt(cells.length - (cells.length * 0.85));
             for (let i = 0; i < EXPL.length; ++i)
@@ -188,6 +189,7 @@ function main() {
     let explBtn = document.getElementById("explBtn");
     let startBtn = document.getElementById("startBtn");
     
+    /* Initialises the game world */
     init();
     
     /* Add onclick listeners to the buttons on the game page (JL) */

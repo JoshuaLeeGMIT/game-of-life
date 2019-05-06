@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Press+Start+2P"/>
@@ -50,7 +50,7 @@
         <div class="col-md-2 border"><h5 id="gPrice"></h5></div>
         <div class="col-md-3"></div>
       </div>
-	  <div class="row">
+	    <div class="row">
         <div class="col-md-3 "></div>
         <div class="col-md-2 border">Spaceship</div>
         <div class="col-md-2 border"><h5 id="lQuanity"></h5></div>
@@ -85,111 +85,110 @@
 					<div class="input-group-prepend">
     				<span class="input-group-text">Coupon code:</span>
   				</div>
-					<input id="couponInput" type="text" class="form-control">
+					<input id="couponInput" type="text" class="form-control"/>
         	<div class="input-group-append">
           	<button class="btn btn-primary" type="button" onclick="coupon()">Apply</button>
         	</div>
       	</div>
-			<!-- Add buttons (EL) -->
+			  <!-- Add buttons (EL) -->
 	  		<button type="button" class="btn btn-primary" onclick="buy()">Buy pieces</button>
-			<button type="button" class="btn btn-primary" onclick="cancel()">Cancel pieces</button>
+			  <button type="button" class="btn btn-primary" onclick="cancel()">Cancel pieces</button>
 	  	</center>
-    </div>
   </body>
-</html>
-<script>
-	
-	let gTotal, lTotal, pTotal, eTotal, nQTotal, nCTotal;
-	let cart = JSON.parse(localStorage.getItem('cart'));
+  <script>
+  let gTotal, lTotal, pTotal, eTotal, nQTotal, nCTotal;
+  let cart = JSON.parse(localStorage.getItem('cart'));
 
   if (localStorage.userInfo == null) {
-    addUserToStorage = { userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0 };
-    localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
+      addUserToStorage = { userName: localStorage.loggedInUser, userPass: localStorage.loggedPass, gliderOwned: 0, lwssOwned: 0, pentaOwned: 0, explOwned: 0 };
+      localStorage.setItem('userInfo', JSON.stringify(addUserToStorage));
   }
+
   let userInfo = JSON.parse(localStorage.getItem('userInfo'));  
   display();
 
-function display() {
-	document.getElementById("gQuanity").innerHTML = cart.nGliders;
-	gTotal = cart.nGliders * 1; 
-	document.getElementById("gPrice").innerHTML = "€" + gTotal;
-	
-	document.getElementById("lQuanity").innerHTML = cart.nLwss;
-	lTotal = cart.nLwss * 2.5; 
-	document.getElementById("lPrice").innerHTML = "€" + lTotal;
-	
-	document.getElementById("pQuanity").innerHTML = cart.nPenta;
-	pTotal = cart.nPenta * 5.99; 
-	document.getElementById("pPrice").innerHTML = "€" + pTotal;
-	
-	document.getElementById("eQuanity").innerHTML = cart.nExpl;
-	eTotal = cart.nExpl * 6.99; 
-	document.getElementById("ePrice").innerHTML = "€" + eTotal;
-	
-	nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
-	nCTotal = gTotal + lTotal + pTotal + eTotal;
-	
-	document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
-	document.getElementById("cTotal").innerHTML = "€" + nCTotal;
-}
+  function display() {
+      document.getElementById("gQuanity").innerHTML = cart.nGliders;
+      gTotal = cart.nGliders * 1;
+      document.getElementById("gPrice").innerHTML = "€" + gTotal;
 
-function coupon() {
-	let couponNumber = Number(document.getElementById("couponInput").value);
-	if(couponNumber == 12345)
-	{
-		 alert("Coupon Successful");
-		 nCTotal -= (nCTotal/10)
-		document.getElementById("cTotal").innerHTML = "€" + nCTotal;
-	}	
-	else
-	{
-		alert("Coupon is wrong or invalid");
-	}
-}
+      document.getElementById("lQuanity").innerHTML = cart.nLwss;
+      lTotal = cart.nLwss * 2.5;
+      document.getElementById("lPrice").innerHTML = "€" + lTotal;
 
-function buy() {
-  alert("Purcase(s) was sucessfull");    
-  userInfo.gliderOwned += cart.nGliders;
-  userInfo.lwssOwned += cart.nLwss;
-  userInfo.pentaOwned += cart.nPenta;
-  userInfo.explOwned += cart.nExpl;
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
-  reset();
-}
+      document.getElementById("pQuanity").innerHTML = cart.nPenta;
+      pTotal = cart.nPenta * 5.99;
+      document.getElementById("pPrice").innerHTML = "€" + pTotal;
+
+      document.getElementById("eQuanity").innerHTML = cart.nExpl;
+      eTotal = cart.nExpl * 6.99;
+      document.getElementById("ePrice").innerHTML = "€" + eTotal;
+
+      nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
+      nCTotal = gTotal + lTotal + pTotal + eTotal;
+
+      document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
+      document.getElementById("cTotal").innerHTML = "€" + nCTotal;
+  }
+
+  function coupon() {
+      let couponNumber = Number(document.getElementById("couponInput").value);
+      if (couponNumber == 12345)
+      {
+	       alert("Coupon Successful");
+	       nCTotal -= (nCTotal/10)
+	      document.getElementById("cTotal").innerHTML = "€" + nCTotal;
+      }
+      else
+      {
+	      alert("Coupon is wrong or invalid");
+      }
+  }
+
+  function buy() {
+      alert("Purcase(s) was sucessfull");
+      userInfo.gliderOwned += cart.nGliders;
+      userInfo.lwssOwned += cart.nLwss;
+      userInfo.pentaOwned += cart.nPenta;
+      userInfo.explOwned += cart.nExpl;
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      reset();
+  }
 
 
-function cancel() {
-	alert("All items cancled");
-	reset();
-}
+  function cancel() {
+      alert("All items cancled");
+      reset();
+  }
 
-function reset() {
-	cart.nGliders = 0;	
-	cart.nLwss = 0;
-	cart.nPenta = 0;
-	cart.nExpl = 0;
-	localStorage.cart = JSON.stringify(cart);
-	
-	document.getElementById("gQuanity").innerHTML = cart.nGliders;
-	gTotal = cart.nGliders * 1; 
-	document.getElementById("gPrice").innerHTML = "€" + gTotal;
-	
-	document.getElementById("lQuanity").innerHTML = cart.nLwss;
-	lTotal = cart.nLwss * 2.5; 
-	document.getElementById("lPrice").innerHTML = "€" + lTotal;
-	
-	document.getElementById("pQuanity").innerHTML = cart.nPenta;
-	pTotal = cart.nPenta * 5.99; 
-	document.getElementById("pPrice").innerHTML = "€" + pTotal.toFixed(2);
-	
-	document.getElementById("eQuanity").innerHTML = cart.nExpl;
-	eTotal = cart.nExpl * 6.99; 
-	document.getElementById("ePrice").innerHTML = "€" + eTotal.toFixed(2);
-	
-	nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
-	nCTotal = gTotal + lTotal + pTotal + eTotal;
-	
-	document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
-	document.getElementById("cTotal").innerHTML = "€" + nCTotal;
-}
-</script>
+  function reset() {
+      cart.nGliders = 0;
+      cart.nLwss = 0;
+      cart.nPenta = 0;
+      cart.nExpl = 0;
+      localStorage.cart = JSON.stringify(cart);
+
+      document.getElementById("gQuanity").innerHTML = cart.nGliders;
+      gTotal = cart.nGliders * 1;
+      document.getElementById("gPrice").innerHTML = "€" + gTotal;
+
+      document.getElementById("lQuanity").innerHTML = cart.nLwss;
+      lTotal = cart.nLwss * 2.5;
+      document.getElementById("lPrice").innerHTML = "€" + lTotal;
+
+      document.getElementById("pQuanity").innerHTML = cart.nPenta;
+      pTotal = cart.nPenta * 5.99;
+      document.getElementById("pPrice").innerHTML = "€" + pTotal.toFixed(2);
+
+      document.getElementById("eQuanity").innerHTML = cart.nExpl;
+      eTotal = cart.nExpl * 6.99;
+      document.getElementById("ePrice").innerHTML = "€" + eTotal.toFixed(2);
+
+      nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
+      nCTotal = gTotal + lTotal + pTotal + eTotal;
+
+      document.getElementById("qTotal").innerHTML = nQTotal + " pieces";
+      document.getElementById("cTotal").innerHTML = "€" + nCTotal;
+  }
+  </script>
+</html>

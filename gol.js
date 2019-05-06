@@ -85,15 +85,15 @@ function tick() {
 /* Function to check if the user owns the piece she wants to place (JL) */
 function userHas(seed) {
     let userHas = false;
-    /* Retrieve the user info from local storage */
+    /* Retrieve the user info from local storage (JL) */
     let invent = JSON.parse(localStorage.userInfo);
 
-    /* Returns true if the user owns more than 0 of the requested piece */
+    /* Returns true if the user owns more than 0 of the requested piece (JL) */
     switch (seed) {
         case "glider":
-            /* Sets userHas to true if any of the piece are owned */
+            /* Sets userHas to true if any of the piece are owned (JL) */
             userHas = (invent.gliderOwned > 0);
-            /* If the piece is owned, remove it as it has been used now */
+            /* If the piece is owned, remove it as it has been used now (JL) */
             if (userHas)
                 --invent.gliderOwned;
             break;
@@ -115,7 +115,7 @@ function userHas(seed) {
         default:
             break;
     }
-    /* Update userInfo in local storage */
+    /* Update userInfo in local storage (JL) */
     localStorage.userInfo = JSON.stringify(invent);
 
     return userHas;
@@ -154,7 +154,7 @@ function create(seed) {
      */
     switch (seed) {
         case "expl":
-            /* We hardcode the relative starting of each piece */
+            /* We hardcode the relative starting of each piece (JL) */
             row = parseInt(cells.length - (cells.length * 0.25));
             col = parseInt(cells.length - (cells.length * 0.85));
             for (let i = 0; i < EXPL.length; ++i)

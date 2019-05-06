@@ -122,12 +122,12 @@ display();
 /*Displays the needed infomation(EL) */
 function display() {
 	/*Calacuates the current totals(EL) */
-	gTotal = cart.nGliders * 1;
-	lTotal = cart.nLwss * 2.5;
-	pTotal = cart.nPenta * 5.99;
-	eTotal = cart.nExpl * 6.99;
+	gTotal = (cart.nGliders * 1).toFixed(2);
+	lTotal = (cart.nLwss * 2.5).toFixed(2);
+	pTotal = (cart.nPenta * 5.99).toFixed(2);
+	eTotal = (cart.nExpl * 6.99).toFixed(2);
 	nQTotal = cart.nGliders + cart.nLwss + cart.nPenta + cart.nExpl;
-	nCTotal = gTotal + lTotal + pTotal + eTotal;
+	nCTotal = Number(gTotal) + Number(lTotal) + Number(pTotal) + Number(eTotal);
 	/*Displays the current infomation(EL) */
 	document.getElementById("gQuanity").innerHTML = cart.nGliders;
 	document.getElementById("gPrice").innerHTML = "€" + gTotal;
@@ -162,7 +162,7 @@ function coupon() {
 }
 /*Adds all peices form cart to user*/
 function buy() {
-  alert("Purcase(s) was sucessfull");    
+  alert("Purchase was Sucessful");    
   userInfo.gliderOwned += cart.nGliders;
   userInfo.lwssOwned += cart.nLwss;
   userInfo.pentaOwned += cart.nPenta;
@@ -174,17 +174,17 @@ function buy() {
 
 /*Cancels all pecies form cart(EL) */
 function cancel() {
-	alert("All items cancled");
+	alert("All Items Cancelled");
 	/*Class reset(El)*/
 	reset();
 }
 /*Reset everything back to 0(EL) */
 function reset() {
-	localStorage.cart = JSON.stringify(cart);
 	cart.nGliders = 0;	
 	cart.nLwss = 0;
 	cart.nPenta = 0;
 	cart.nExpl = 0;
+	localStorage.cart = JSON.stringify(cart);
 	gTotal = 0;
 	lTotal = 0;
 	pTotal = 0;
@@ -193,10 +193,10 @@ function reset() {
 	nCTotal = 0;
 	/*Updates page(EL)*/
 	document.getElementById("gQuanity").innerHTML = cart.nGliders;
-	document.getElementById("gPrice").innerHTML = "€" + gTotal;
+	document.getElementById("gPrice").innerHTML = "€" + gTotal.toFixed(2);
 	
 	document.getElementById("lQuanity").innerHTML = cart.nLwss;
-	document.getElementById("lPrice").innerHTML = "€" + lTotal;
+	document.getElementById("lPrice").innerHTML = "€" + lTotal.toFixed(2);
 	
 	document.getElementById("pQuanity").innerHTML = cart.nPenta; 
 	document.getElementById("pPrice").innerHTML = "€" + pTotal.toFixed(2);
